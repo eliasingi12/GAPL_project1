@@ -13,11 +13,11 @@ import org.ggp.base.util.statemachine.exceptions.TransitionDefinitionException;
 
 public class OurStateMachine extends StateMachine {
 
+	private List<Gdl> gameDescr;
+
 	@Override
 	public void initialize(List<Gdl> description) {
-		// TODO Auto-generated method stub
-		// store GDL
-
+		this.gameDescr = description;
 	}
 
 	@Override
