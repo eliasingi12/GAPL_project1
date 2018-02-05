@@ -10,6 +10,7 @@ public class UnitTests {
 
 	@Test
 	public void test() {
+		//Junit test = new Junit();
 		substitution subtest = new substitution();
 		subtest.put(GdlPool.getVariable("X"),GdlPool.getConstant("a"));
 		subtest.put(GdlPool.getVariable("Y"),GdlPool.getConstant("b"));
@@ -29,10 +30,11 @@ public class UnitTests {
 		terms[1] = GdlPool.getVariable("V");
 		GdlFunction move3 = GdlPool.getFunction(GdlPool.getConstant("move"), terms);
 
-		//substitution mgu = Unifier.mgu(move1,move2);
-		//assert subtest.equals(mgu);
-		//mug = Unifier.mgu(move1,move3);
-		//assert !subtest.equals(mgu);
+		substitution empty = new substitution();
+		substitution mgu = OurUnification.mgu(move1,move2,empty);
+		assert subtest.equals(mgu);
+		mgu = OurUnification.mgu(move1,move3,empty);
+		assert !subtest.equals(mgu);
 
 		GdlVariable Y = GdlPool.getVariable("Y");
 		GdlVariable V = GdlPool.getVariable("V");
