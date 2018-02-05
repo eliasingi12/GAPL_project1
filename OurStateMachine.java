@@ -18,11 +18,14 @@ public class OurStateMachine extends StateMachine {
 	@Override
 	public void initialize(List<Gdl> description) {
 		this.gameDescr = description;
+		// substitution result = new substitution();
+		System.out.print("Description: \n" + description + "\n");
 	}
 
 	@Override
 	public int getGoal(MachineState state, Role role) throws GoalDefinitionException {
 		// TODO Auto-generated method stub
+		System.out.print("Role name: " + role.getName() + "\n");
 		return 0;
 	}
 
