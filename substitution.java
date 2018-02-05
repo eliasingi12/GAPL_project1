@@ -26,6 +26,11 @@ public class substitution {
 		this.submap.remove(var);
 	}
 
+	public boolean contains(GdlVariable var)
+    {
+        return submap.containsKey(var);
+    }
+
 	public GdlVariable[] getKeySet() {
 		Set<GdlVariable> keys = this.submap.keySet();
 		int s = keys.size();
