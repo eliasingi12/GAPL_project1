@@ -21,7 +21,7 @@ public class Prover {
 			GdlTerm obj = theta.get(var);
 			if (obj != null) {return obj;}
 		}
-		if (term instanceof GdlFunction) {
+		else if (term instanceof GdlFunction) {
 			List<GdlTerm> terms = ((GdlFunction) term).getBody();
 			List<GdlTerm> body = new ArrayList<GdlTerm>();
 			for (GdlTerm t : terms) {
