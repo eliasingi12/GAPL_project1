@@ -39,7 +39,8 @@ public class UnitTests {
 
 		//mgu = Unifier.mgu(Y,V);
 		//assert !subtest.equals(mgu);
-
+		subtest.remove(GdlPool.getVariable("X"));
+		//assert subtest.equals(mgu);
 	}
 
 }
