@@ -30,4 +30,30 @@ public class NewGamer extends SampleGamer {
 		return new CachedStateMachine(new OurStateMachine());
 	}
 
+	/* @Override
+	public OurStateMachine getInitialStateMachine() {
+
+	}*/
+
+	/*public static void main(String[] args) throws IOException
+    {
+		FileInputStream fstream = new FileInputStream("/Users/EIE/Desktop/GAPL/Breakthrough_Checkers.txt");
+		BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
+
+		String strLine;
+
+		while ((strLine = br.readLine()) != null)   {
+		  System.out.println (strLine);
+		}
+
+		br.close();
+
+		GdlVariable variables = GdlPool.getVariable("role");
+		GdlConstant constants = GdlPool.getConstant("white");
+
+		System.out.println("\n" + variables);
+		System.out.println("\n" + constants);
+
+    }*/
+
 }
