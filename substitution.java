@@ -23,7 +23,7 @@ public class substitution {
 	}
 
 	public void remove(GdlVariable var) {
-		this.submap.remove(var);
+		submap.remove(var);
 	}
 
 	public boolean contains(GdlVariable var)
@@ -32,7 +32,7 @@ public class substitution {
     }
 
 	public GdlVariable[] getKeySet() {
-		Set<GdlVariable> keys = this.submap.keySet();
+		Set<GdlVariable> keys = submap.keySet();
 		int s = keys.size();
 		return keys.toArray(new GdlVariable[s]);
 	}
@@ -40,6 +40,7 @@ public class substitution {
 	public boolean equals(substitution s) {
 		GdlVariable[] keys = s.getKeySet();
 		GdlVariable key;
+		if (keys.length != this.getKeySet().length) {return false;}
 		for (int i = 0; i < keys.length; i++) {
 			key = keys[i];
 			if (!submap.containsKey(key)) {return false;}
@@ -53,7 +54,8 @@ public class substitution {
 		String str = "{";
 		GdlVariable[] keys = this.getKeySet();
 		for (int i = 0; i < keys.length; i++) {
-			str = str + keys[i].toString() + "->" + this.get(keys[i]).toString()+", ";
+			str = str + keys[i].toString() + "->" + this.get(keys[i]).toString();
+			if (i < keys.length - 1) str = str + ", ";
 		}
 		return str + "}";
 	}
