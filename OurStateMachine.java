@@ -17,17 +17,20 @@ import org.ggp.base.util.statemachine.exceptions.TransitionDefinitionException;
 public class OurStateMachine extends StateMachine {
 
 	private List<Gdl> gameDescr;
-	LinkedList<GdlLiteral> query;
+	private LinkedList<GdlLiteral> query;
 	private List<Gdl> rules;
 	// private Set<GdlSentence> test;
 	boolean askOne;
 	List myList = new ArrayList();
 	// Set<GdlSentence> Prove = new Prove(query, rules, true);
-	Prove test = new Prove(query, rules, myList);
+
 
 	@Override
 	public void initialize(List<Gdl> description) {
 		this.gameDescr = description;
+		myList.add(1);
+		myList.add(7);
+		Prove test = new Prove(query, rules, myList);
 		// this.query = query;
 		// substitution result = new substitution();
 		// System.out.print("Query: \n" + query + "\n");
@@ -39,7 +42,7 @@ public class OurStateMachine extends StateMachine {
 	@Override
 	public int getGoal(MachineState state, Role role) throws GoalDefinitionException {
 		// TODO Auto-generated method stub
-		System.out.print("Role name: " + role.getName() + "\n");
+		System.out.print("Role name: " + "\n" + "\n" + "\n");
 		// Here we want to return prove([goal(xplayer, V)], rules, {})
 		// and it should return us a set of substitutes
 		//	=> [{V -> ...)}, {V -> ... }, ... }]
@@ -76,6 +79,7 @@ public class OurStateMachine extends StateMachine {
 	@Override
 	public List<Move> getLegalMoves(MachineState state, Role role) throws MoveDefinitionException {
 		// TODO Auto-generated method stub
+		System.out.print("Testing getLegalMoves: " + "\n" + "\n" + "\n");
 		// Here we want to return prove([legal(xplayer, M)], rules, {})
 		// and it should return us a set of substitutes
 		//	=> [{M -> ...)}, {M -> ... }, ... }]
