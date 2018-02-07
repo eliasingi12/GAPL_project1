@@ -34,8 +34,8 @@ public class substituteTest {
 		testfunc.put(GdlPool.getVariable("Y"),GdlPool.getConstant("2"));
 
 		Gdl funcresult = Prover.substitute(cell, testfunc);
-		// System.out.println(((GdlFunction) funcresult).getName());
-		// System.out.println(((GdlFunction) funcresult).get(0));
+		System.out.println(((GdlFunction) funcresult).getName());
+		System.out.println(((GdlFunction) funcresult).get(0));
 		assert ((((GdlFunction) funcresult).getName()).toString() == "cell"); // works
 		assert !((((GdlFunction) funcresult).getName()).toString() == "control"); // "fails"
 		assert ((((GdlFunction) funcresult).get(0)).toString() == "1"); // works
@@ -58,6 +58,14 @@ public class substituteTest {
 		GdlRelation nextcell = GdlPool.getRelation(GdlPool.getConstant("next"), relbody);
 		Gdl relresult = Prover.substitute(nextcell, testrel);
 		System.out.println(relresult);
+		System.out.println(((GdlRelation) relresult).getName());
+		System.out.println(((GdlRelation) relresult).getBody());
+		System.out.println(((GdlRelation) relresult).get(0));
+		assert ((((GdlRelation) relresult).getName()).toString() == "next"); // works
+		// assert ((((GdlFunction) relresult).get(0)).toString() == "cell"); // works
+		// assert ((((GdlRelation) relresult).get(1)).toString() == "5"); // works
+		// assert ((((GdlRelation) relresult).get(2)).toString() == "10"); // works
+		// assert ((((GdlRelation) relresult).get(3)).toString() == "b"); // works
 
 
 
