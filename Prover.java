@@ -45,13 +45,13 @@ public class Prover {
 		else if (expression instanceof GdlLiteral) {
 			if (expression instanceof GdlSentence) {
 				if (expression instanceof GdlRelation) {
-					List<GdlTerm> terms = ((GdlFunction) expression).getBody();
+					List<GdlTerm> terms = ((GdlRelation) expression).getBody();
 					List<GdlTerm> body = new ArrayList<GdlTerm>();
 					for (GdlTerm t : terms) {
 						// We recursively call substitute on the relation's body
 						body.add((GdlTerm) substitute((Gdl) t, theta));
 					}
-					return GdlPool.getRelation(((GdlFunction) expression).getName(), body);
+					return GdlPool.getRelation(((GdlRelation) expression).getName(), body);
 				}
 				// expression is a proposition so there is nothing to substitute!
 				return expression;
@@ -66,6 +66,6 @@ public class Prover {
 				return GdlPool.getNot((GdlLiteral) substitute((Gdl) body, theta));
 			}
 		}
-	return expression;
+		return expression;
 	}
 }
