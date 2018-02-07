@@ -40,11 +40,21 @@ public class substitution {
 	public boolean equals(substitution s) {
 		GdlVariable[] keys = s.getKeySet();
 		GdlVariable key;
-		for (int i = 0; i < keys.length;) {
+		for (int i = 0; i < keys.length; i++) {
 			key = keys[i];
-			if (!this.submap.containsKey(keys[i])) {return false;}
-			if (this.submap.get(key).toString() != s.get(key).toString()) {return false;}
+			if (!submap.containsKey(key)) {return false;}
+			if (submap.get(key).toString() != s.get(key).toString()) {return false;}
 		}
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		String str = "";
+		GdlVariable[] keys = this.getKeySet();
+		for (int i = 0; i < keys.length; i++) {
+			str = str + keys[i].toString() + "->" + this.get(keys[i]).toString()+", ";
+		}
+		return str;
 	}
 }
