@@ -1,6 +1,7 @@
 package GAPL_project1;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.ggp.base.util.gdl.grammar.Gdl;
@@ -10,6 +11,7 @@ import org.ggp.base.util.gdl.grammar.GdlLiteral;
 import org.ggp.base.util.gdl.grammar.GdlNot;
 import org.ggp.base.util.gdl.grammar.GdlPool;
 import org.ggp.base.util.gdl.grammar.GdlRelation;
+import org.ggp.base.util.gdl.grammar.GdlRule;
 import org.ggp.base.util.gdl.grammar.GdlSentence;
 import org.ggp.base.util.gdl.grammar.GdlTerm;
 import org.ggp.base.util.gdl.grammar.GdlVariable;
@@ -18,6 +20,59 @@ public class Prover {
 
 	Prover() {
 		// Nothing here
+	}
+
+	public static List<substitution> prove(LinkedList<GdlLiteral> query, List<Gdl> rules, substitution answersub) {
+		if (query.isEmpty()) {
+			List<substitution> answers = new ArrayList<substitution>();
+			answers.add(answersub);
+			return answers;}
+		// TODO: If Query is empty, then answers.add(s); ???
+		GdlLiteral literal = query.pop();
+		if (literal instanceof GdlNot) {
+
+		}
+		if (literal instanceof GdlDistinct) {
+
+		} else if (literal instanceof GdlSentence) {
+			Gdl head;
+			List<GdlLiteral> body;
+			for (Gdl r : rules) {
+				if (r instanceof GdlSentence) {
+					head = ((GdlSentence) r).getName();
+					body = null;
+					System.out.print("The head: " + ((GdlSentence) r).getName() + " And body: " + ((GdlSentence) r).getBody() + "\n");
+				}
+				else
+				{
+					head = ((GdlRule) r).getHead();
+					body = ((GdlRule) r).getBody();
+				}
+				answersub = OurUnification.mgu(literal, head, answersub);
+				if (answersub == null) continue;
+				else {
+					LinkedList<GdlLiteral> query2 = new LinkedList<GdlLiteral>(query);
+					query2.addAll(body);
+					return prove(query2, rules, answersub);
+				}
+			}
+			// ((GdlRule) r).getHead();
+		}
+		// System.out.print("Query: \n" + query + "\n");
+		// System.out.print("rules: \n" + rules + "\n");
+
+		// TODO: if (l = not p) then if (prove(p,rules,{}) == null) prove(query - l, rules, s)
+		// TODO: if l = distinct(x,y) ...
+		// TODO: else {} // Here l is a instance of GdlSentence
+		// for r in rules do
+		// if r is GdlSentence head = r; body = {}
+		// else ((GdlRule r).getHead(); Body = r.getBody()
+		// s = mgu(l, head, s)
+		// if (s == null) continue
+		// else query2 = query-l + body
+		// 		prove(query2,rules,s)
+		// return context;
+		return null;
 	}
 
 	public static Gdl substitute(Gdl expression, substitution theta) {
