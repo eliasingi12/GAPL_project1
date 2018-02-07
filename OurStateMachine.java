@@ -1,8 +1,11 @@
 package GAPL_project1;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.ggp.base.util.gdl.grammar.Gdl;
+import org.ggp.base.util.gdl.grammar.GdlLiteral;
 import org.ggp.base.util.statemachine.MachineState;
 import org.ggp.base.util.statemachine.Move;
 import org.ggp.base.util.statemachine.Role;
@@ -14,12 +17,23 @@ import org.ggp.base.util.statemachine.exceptions.TransitionDefinitionException;
 public class OurStateMachine extends StateMachine {
 
 	private List<Gdl> gameDescr;
+	LinkedList<GdlLiteral> query;
+	private List<Gdl> rules;
+	// private Set<GdlSentence> test;
+	boolean askOne;
+	List myList = new ArrayList();
+	// Set<GdlSentence> Prove = new Prove(query, rules, true);
+	Prove test = new Prove(query, rules, myList);
 
 	@Override
 	public void initialize(List<Gdl> description) {
 		this.gameDescr = description;
+		// this.query = query;
 		// substitution result = new substitution();
-		System.out.print("Description: \n" + description + "\n");
+		// System.out.print("Query: \n" + query + "\n");
+		// System.out.print("rules: \n" + rules + "\n");
+		// System.out.print("List: \n" + myList + "\n");
+		// System.out.print("Description: \n" + description + "\n");
 	}
 
 	@Override
@@ -50,6 +64,7 @@ public class OurStateMachine extends StateMachine {
 
 	@Override
 	public MachineState getInitialState() {
+
 		// TODO Auto-generated method stub
 		// return prover.findinitial();
 		// Here we want to return prove([init(F)], rules, {})
