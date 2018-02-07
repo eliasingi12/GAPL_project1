@@ -78,8 +78,7 @@ public class UnificationTest {
 		GdlRelation rel2 = GdlPool.getRelation(GdlPool.getConstant("next"), terms);
 
 		mgu = OurUnification.mgu(rel1, rel2, new substitution());
-		System.out.println(mgu);
-		System.out.println(mgu.toString().equals("{F->( cell 1 2 b )}"));
+		assert mgu.toString().equals("{F->( cell 1 2 b )}");
 	}
 
 }
