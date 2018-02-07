@@ -40,7 +40,7 @@ public class OurUnification {
             if (!x.equals(y))
             {
             	System.out.println("Null because of constants do not match");
-                return null;
+                return sigma; // was null
             }
         }
 
@@ -55,7 +55,7 @@ public class OurUnification {
             if(xFunction.getName() != yFunction.getName() || xFunction.arity() != yFunction.arity())
             {
             	System.out.println("Null because function names differ / or number of arguments");
-                return null;
+                return sigma; // was null
             }
             else
             {
@@ -63,15 +63,9 @@ public class OurUnification {
             	for (int i = 0; i < xFunction.arity(); i++)
             	{
         			System.out.println("Argument size of functions x & y matches" + "\n");
-            		if(xFunction.get(i) == yFunction.get(i))
-            		{
-            			System.out.println("First function arguments are the same" + "\n" + "Entering mgu() recursively" + "\n");
-            			// call mgu with get(x), get(y) if they match
-            			mgu(xFunction.get(i) , yFunction.get(i), sigma);
-            		}
-        			// return null of this fails
-            		else
-            			System.out.println("Failed to compare function arguments");
+            		System.out.println("First function arguments are the same" + "\n" + "Entering mgu() recursively" + "\n");
+            		// call mgu with get(x), get(y) if they match
+            		if (mgu(xFunction.get(i) , yFunction.get(i), sigma) == null)
             			return null;
             	}
             }
@@ -92,7 +86,7 @@ public class OurUnification {
 					if(((GdlRelation) x).arity() != ((GdlRelation) y).arity())
 					{
 						System.out.println("Null because of relation body/argument size differs");
-						return null;
+						return sigma; // was null
 					}
 
 					for(int i = 0; i < ((GdlRelation) x).arity(); i++)
