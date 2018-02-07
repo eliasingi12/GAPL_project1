@@ -11,7 +11,7 @@ import org.ggp.base.util.gdl.grammar.GdlVariable;
 
 public class OurUnification {
 
-	public static substitution sigma = new substitution();
+	// public static substitution sigma = new substitution();
 
 	public static substitution mgu(Gdl x, Gdl y, substitution sigma)
 	{
@@ -22,13 +22,14 @@ public class OurUnification {
 		// check if either x or y are GdlVariables, call mguvar() and add sub to sigma if successful.
 		if (x instanceof GdlVariable)
 			return mguvar((GdlVariable) x, (GdlTerm) y, sigma);
-		if (y instanceof GdlTerm)
+		if (y instanceof GdlVariable)
 			return mguvar((GdlVariable) y, (GdlTerm) x, sigma);
 
 		if ((x instanceof GdlConstant) && (y instanceof GdlConstant))
         {
             if (!x.equals(y))
             {
+            	System.out.println("Null because of constants do not match");
                 return null;
             }
         }
@@ -41,7 +42,10 @@ public class OurUnification {
 
             // function names don't match, arity() => function arguments size... returns body.size();
             if(xFunction.getName() != yFunction.getName() || xFunction.arity() != yFunction.arity())
+            {
+            	System.out.println("Null because function names differ / or number of arguments");
                 return null;
+            }
             else
             {
             	// for each argument...
@@ -54,6 +58,7 @@ public class OurUnification {
             		}
         			// return null of this fails
             		else
+            			System.out.println("Failed to compare function arguments");
             			return null;
             	}
             }
@@ -69,7 +74,10 @@ public class OurUnification {
 				{
 					// body.size() of relation --- number of arguments basically
 					if(((GdlRelation) x).arity() != ((GdlRelation) y).arity())
+					{
+						System.out.println("Null because of relation size differs");
 						return null;
+					}
 
 					for(int i = 0; i < ((GdlRelation) x).arity(); i++)
 					{
@@ -99,7 +107,7 @@ public class OurUnification {
         else
         {
             sigma.put(x, y);
+            return sigma;
         }
-        return sigma;
 	}
 }
