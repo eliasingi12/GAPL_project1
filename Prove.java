@@ -21,8 +21,14 @@ public class Prove {
 		if (literal instanceof GdlSentence) {
 			for (Gdl r : rules) {
 				if (r instanceof GdlSentence) {
+					Gdl head = r;
 
 					System.out.print("The head: " + ((GdlSentence) r).getName() + " And body: " + ((GdlSentence) r).getBody() + "\n");
+				}
+				else
+				{
+					Gdl head = ((GdlSentence) r).getName();
+					Gdl body = r.getBody();
 				}
 			}
 			// ((GdlRule) r).getHead();
