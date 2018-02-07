@@ -6,7 +6,7 @@ import org.ggp.base.util.gdl.grammar.GdlTerm;
 import org.ggp.base.util.gdl.grammar.GdlVariable;
 import org.junit.Test;
 
-public class UnitTests {
+public class UnificationTest {
 
 	@Test
 	public void test() {

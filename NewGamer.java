@@ -26,7 +26,7 @@ public class NewGamer extends SampleGamer {
 
 	@Override
 	public StateMachine getInitialStateMachine() {
-		System.out.print("Test\n");
+		// System.out.print("Test\n");
 		return new CachedStateMachine(new OurStateMachine());
 	}
 

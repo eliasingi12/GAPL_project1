@@ -1,26 +1,32 @@
 package GAPL_project1;
 
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 import org.ggp.base.util.gdl.grammar.Gdl;
 import org.ggp.base.util.gdl.grammar.GdlLiteral;
+import org.ggp.base.util.gdl.grammar.GdlSentence;
 
 public class Prove {
-	// answers should be a new set of items
-	Set<String> answers = new HashSet<String>();
 
-	// substitution s = new substitution();
-
-	public Prove(LinkedList<GdlLiteral> query, List<Gdl> rules, List s) {
+	public static List<substitution> prove(LinkedList<GdlLiteral> query, List<Gdl> rules, LinkedList<substitution> extrasub) {
 	// private Set<GdlSentence> Prove(GdlSentence query, Set<GdlSentence> context, boolean askOne) {
-		// System.out.print("Query: \n" + query + "\n");
 		// TODO: If Query is empty, then answers.add(s);
-		System.out.print("Hello list: \n" + s + "\n");
-		// GdlLiteral l = query.pop();
-		// System.out.print("Query: \n" + query.pop() + "\n");
+		// System.out.print("Query: \n" + query + "\n");
+		// System.out.print("Hello gameDescr: \n" + gameDescr + "\n");
+		// System.out.print("Hello list: \n" + extrasub + "\n");
+		GdlLiteral literal = query.pop();
+		// System.out.print("query.pop(): \n" + literal + "\n");
+		// System.out.print("query.pop(): \n" + (literal instanceof GdlSentence) + "\n");
+		if (literal instanceof GdlSentence) {
+			for (Gdl r : rules) {
+				if (r instanceof GdlSentence) {
+
+					System.out.print("The head: " + ((GdlSentence) r).getName() + " And body: " + ((GdlSentence) r).getBody() + "\n");
+				}
+			}
+			// ((GdlRule) r).getHead();
+		}
 		// System.out.print("Query: \n" + query + "\n");
 		// System.out.print("rules: \n" + rules + "\n");
 
@@ -35,6 +41,7 @@ public class Prove {
 		// else query2 = query-l + body
 		// 		prove(query2,rules,s)
 		// return context;
+		return null;
 	}
 
 }
