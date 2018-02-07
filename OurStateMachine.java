@@ -20,7 +20,7 @@ public class OurStateMachine extends StateMachine {
 
 	private List<Gdl> gameDescr;
 	private LinkedList<GdlLiteral> query = new LinkedList<GdlLiteral>();
-	private LinkedList<substitution> extrasub = new LinkedList<substitution>();
+	private substitution extrasub = new substitution();
 	List myList = new ArrayList();
 	// Set<GdlSentence> Prove = new Prove(query, rules, true);
 
@@ -76,7 +76,7 @@ public class OurStateMachine extends StateMachine {
 		System.out.print("query: \n" + query + "\n");
 		// We create a list of substitutions from our query and game description
 
-		List<substitution> answers = Prove.prove(query, gameDescr, extrasub);
+		List<substitution> answers = Prover.prove(query, gameDescr, extrasub);
 
 		// Here we want to return prove([init(F)], rules, {})
 		// and it should return us a set of substitutes
