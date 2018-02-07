@@ -1,6 +1,7 @@
 package GAPL_project1;
 
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 import org.ggp.base.player.gamer.statemachine.sample.SampleGamer;
 import org.ggp.base.util.statemachine.Move;
@@ -19,7 +20,10 @@ public class NewGamer extends SampleGamer {
 		StateMachine theMachine = getStateMachine();
 
 		List<Move> moves = theMachine.getLegalMoves(getCurrentState(), getRole());
-		Move move = moves.get(0);
+
+		int numberOfLegalMoves = moves.size();
+		int randomNum = ThreadLocalRandom.current().nextInt(numberOfLegalMoves);
+		Move move = moves.get(randomNum);
 
 		return move;
 	}

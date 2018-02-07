@@ -14,6 +14,7 @@ public class substituteTest {
 	@Test
 	public void test() {
 
+		/* Testing Variable substitution */
 		substitution testvar = new substitution();
 		testvar.put(GdlPool.getVariable("X"),GdlPool.getConstant("a"));
 		GdlVariable VarExpression = GdlPool.getVariable("X");
@@ -22,6 +23,7 @@ public class substituteTest {
 		assert ((GdlConstant) result).getValue() == "a"; // works
 		assert !(((GdlConstant) result).getValue() == "b"); // "fails"
 
+		/* Testing "variables within functions" substitutions */
 		GdlTerm[] terms = new GdlTerm[3];
 		terms[0] = GdlPool.getVariable("X");
 		terms[1] = GdlPool.getVariable("Y");
@@ -44,6 +46,7 @@ public class substituteTest {
 		assert ((((GdlFunction) funcresult).get(2)).toString() == "b"); // works
 
 
+		/* Testing relation substitutions */
 		// testing relation --- next(cell(X,Y,b)) with substitution X->5, Y->10
 		GdlTerm[] relbody = new GdlTerm[4];
 		relbody[0] = GdlPool.getFunction(GdlPool.getConstant("cell"));
